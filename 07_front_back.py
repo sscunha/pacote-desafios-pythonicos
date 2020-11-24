@@ -12,9 +12,15 @@ a-frente + b-frente + a-trás + b-trás
 """
 def front_back(a, b):
     # +++ SUA SOLUÇÃO +++
-    return
-
-
+    frente_a, tras_a = comprimento(a)
+    frente_b, tras_b = comprimento(b)
+    return frente_a + frente_b + tras_a + tras_b
+def comprimento(palavra):
+    return par(palavra)if len(palavra)%2==0 else impar(palavra)
+def par(palavra):
+    return palavra[:int(len(palavra)/2)],palavra[int(len(palavra)/2):]
+def impar(palavra):
+    return palavra[:int(len(palavra)/2)+1],palavra[(int(len(palavra)/2)+1):]
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
 
 def test(f, in_, expected):
