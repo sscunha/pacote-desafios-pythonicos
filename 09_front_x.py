@@ -13,9 +13,10 @@ antes de combina-las.
 
 def front_x(words):
     # +++ SUA SOLUÇÃO +++
-    return
+    return sorted(words, key=ordenar)
 
-
+def ordenar(w):
+    return w if w.startswith('x') else f"z{w}"
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
 
 def test(f, in_, expected):
