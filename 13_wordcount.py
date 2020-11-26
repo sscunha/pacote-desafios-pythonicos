@@ -52,11 +52,32 @@ e conferindo cada etapa do seu progresso.
 """
 
 import sys
-
+from collections import Counter
 
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
+def report(words):
+    return '\n'.join([f'{w} {qty}' for w, qty in words])
 
+def asc(counter):
+    return sorted(counter.items())
+
+def top(counter, qty=20):
+    return sorted(counter.items(), reverse=True, key=lambda t: t[-1])[:qty]
+
+def read(filename):
+    with open(filename) as f:
+        return f.read()
+
+def count_words(content):
+    words = content.lower().split()
+    return Counter(words)
+
+def print_words(filename):
+    return report(asc(count_words(read(filename))))
+
+def print_top(filename):
+    return report(top(count_words(read(filename))))
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
@@ -68,13 +89,12 @@ def main():
     option = sys.argv[1]
     filename = sys.argv[2]
     if option == '--count':
-        print_words(filename)
+        print(print_words(filename))
     elif option == '--topcount':
-        print_top(filename)
+        print(print_top(filename))
     else:
         print('unknown option: ' + option)
         sys.exit(1)
-
 
 if __name__ == '__main__':
     main()
